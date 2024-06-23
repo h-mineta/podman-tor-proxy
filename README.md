@@ -5,3 +5,7 @@ podman for tor proxy
 ```bash
 podman-compose up -d
 ```
+
+## Use Proxy
+socks5://localhost:9050
+
