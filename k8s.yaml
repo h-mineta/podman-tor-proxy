@@ -1,0 +1,33 @@
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-5.2.1
+
+# NOTE: The namespace sharing for a pod has been modified by the user and is not the same as the
+# default settings for kubernetes. This can lead to unexpected behavior when running the generated
+# kube yaml in a kubernetes cluster.
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.kubernetes.cri-o.SandboxID/podman-tor-proxytor1: 47f1eab487d6645ff0bfae1a4347149fdfed5b6a30b0ee3291b4ee61a914af62
+  creationTimestamp: "2024-08-23T16:25:16Z"
+  labels:
+    app: tor
+  name: tor
+spec:
+  containers:
+  - image: localhost/tor-proxy:latest
+    name: proxy
+    ports:
+    - containerPort: 9050
+      hostPort: 9050
+    securityContext: {}
+    volumeMounts:
+    - mountPath: /var/lib/tor
+      name: var-lib-tor
+  volumes:
+  - name: var-lib-tor
+    persistentVolumeClaim:
+      claimName: var-lib-tor
